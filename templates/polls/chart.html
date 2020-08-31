@@ -11,5 +11,8 @@
 <div class="col-sm">
 <a class="btn btn-dark" href="{% url 'polls:detail' question.id %}">Vote again?</a>
 </div>
+<div class="col-sm">
+<a href="{% url 'polls:results' question.id %}" class="btn btn-dark">Results</a>
+</div>
 </div>
 {% endblock %}
