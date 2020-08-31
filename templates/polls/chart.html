@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-5 text-center">{{ question.question_text }}</h1>
+<div class="row justify-content-center">
+<canvas id="myChart" data-url="{% url 'polls:get_votes' question.id %}" width="400" height="400"></canvas>
+</div>
+<div class="row">
+<div class="col-sm">
+<a class="btn btn-secondary" href="{% url 'polls:index' %}">Back To Polls</a>
+</div>
+<div class="col-sm">
+<a class="btn btn-dark" href="{% url 'polls:detail' question.id %}">Vote again?</a>
+</div>
+</div>
+{% endblock %}

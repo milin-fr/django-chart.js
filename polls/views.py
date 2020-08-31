@@ -6,11 +6,13 @@ from django.forms.models import model_to_dict
 
 from .models import Question, Choice
 
+
 # Get questions and display them
 def index(request):
     question_list = Question.objects.all()
     context = {'question_list': question_list}
     return render(request, 'polls/index.html', context)
+
 
 # Show specific question and choices
 def detail(request, question_id):
@@ -19,6 +21,7 @@ def detail(request, question_id):
   except Question.DoesNotExist:
     raise Http404("Question does not exist")
   return render(request, 'polls/detail.html', { 'question': question })
+
 
 # Get question and display results
 def results(request, question_id):
@@ -52,3 +55,9 @@ def get_votes(request, question_id):
     for choice in question.choice_set.all():
         choices.append(model_to_dict(choice))
     return JsonResponse(choices, safe=False)
+
+
+# Display chart page
+def chart(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/chart.html', { 'question': question })
