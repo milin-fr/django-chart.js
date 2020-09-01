@@ -9,5 +9,6 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
     path('<int:question_id>/get-votes/', views.get_votes, name='get_votes'),
     path('<int:question_id>/chart/', views.chart, name='chart'),
-    path('generate-gamers/', views.generate_gamers_in_db, name='generate_gamers_in_db')
+    path('generate-gamers/', views.generate_gamers_in_db, name='generate_gamers_in_db'),
+    path('json-gamers/', views.get_gamers_json, name='get_gamers_json')
 ]

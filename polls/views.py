@@ -99,3 +99,17 @@ def generate_gamers_in_db(request):
       gamer.save()
 
     # return JsonResponse({"resonse":"ok"}, safe=False)
+
+
+# Display chart page for all gamers
+def raw_gamer_chart(request):
+    gamers = Gamer.objects.all()
+    return render(request, 'polls/chart.html', { 'question': question })
+
+
+# Get JSON data of all gamers
+def get_gamers_json(request):
+    gamers_data = []
+    for gamer in Gamer.objects.all():
+        gamers_data.append(model_to_dict(gamer))
+    return JsonResponse(gamers_data, safe=False)
