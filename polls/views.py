@@ -103,8 +103,7 @@ def generate_gamers_in_db(request):
 
 # Display chart page for all gamers
 def raw_gamer_chart(request):
-    gamers = Gamer.objects.all()
-    return render(request, 'polls/chart.html', { 'question': question })
+    return render(request, 'polls/raw_gamer_chart.html', {})
 
 
 # Get JSON data of all gamers
