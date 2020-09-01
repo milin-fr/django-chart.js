@@ -3,8 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.forms.models import model_to_dict
+import random
 
-from .models import Question, Choice
+from .models import Question, Choice, Gamer
 
 
 # Get questions and display them
@@ -61,3 +62,40 @@ def get_votes(request, question_id):
 def chart(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/chart.html', { 'question': question })
+
+
+# Add a set of gamer entries to DB
+def generate_gamers_in_db(request):
+
+    return JsonResponse({"warning":"this command will generate 50k entries in db. If you want to execute it, update polls -> views -> generate_gamers_in_db"}, safe=False)
+
+    avatar_name_suffix = avatar_name_core = avatar_name_prefix = ["Slayer", "Doom", "Mighty", "Magic", "Elf", "Dwarf", "Eagle", "Sword", "Gun", "Blast", "Fire", "Lord", "Warior", "Mage", "Rogue", "War", "Battle", "Champion", "Team", "Chosen"]
+    for i in range(10000): # play few pay few
+      gamer = Gamer()
+      gamer.avatar_name = avatar_name_suffix[random.randint(0,19)] + avatar_name_core[random.randint(0,19)] + avatar_name_prefix[random.randint(0,19)]
+      gamer.playtime = random.randint(1,100)
+      gamer.money_spent = random.randint(1,10)
+      gamer.save()
+
+    for i in range(20000): # play lot pay few
+      gamer = Gamer()
+      gamer.avatar_name = avatar_name_suffix[random.randint(0,19)] + avatar_name_core[random.randint(0,19)] + avatar_name_prefix[random.randint(0,19)]
+      gamer.playtime = random.randint(100,1000)
+      gamer.money_spent = random.randint(1,10)
+      gamer.save()
+    
+    for i in range(12000): # play lot pay lot
+      gamer = Gamer()
+      gamer.avatar_name = avatar_name_suffix[random.randint(0,19)] + avatar_name_core[random.randint(0,19)] + avatar_name_prefix[random.randint(0,19)]
+      gamer.playtime = random.randint(100,1000)
+      gamer.money_spent = random.randint(10,100)
+      gamer.save()
+
+    for i in range(8000): # play few pay lot
+      gamer = Gamer()
+      gamer.avatar_name = avatar_name_suffix[random.randint(0,19)] + avatar_name_core[random.randint(0,19)] + avatar_name_prefix[random.randint(0,19)]
+      gamer.playtime = random.randint(1,100)
+      gamer.money_spent = random.randint(10,100)
+      gamer.save()
+
+    # return JsonResponse({"resonse":"ok"}, safe=False)
