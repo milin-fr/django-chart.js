@@ -16,3 +16,12 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class Gamer(models.Model):
+    avatar_name = models.CharField(max_length=200)
+    playtime = models.IntegerField()
+    money_spent = models.IntegerField()
+
+    def __str__(self):
+        return self.avatar_name
